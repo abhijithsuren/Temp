@@ -1,0 +1,568 @@
+1 Multiplication table 
+ 
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Multiplication Table</title> 
+</head> 
+<body> 
+  
+<form method="post"> 
+    <input type="number" name="num" placeholder="Enter a number" required> 
+    <button type="submit">Show Table</button> 
+</form> 
+  
+<?php 
+if (isset($_POST['num'])) { 
+    $num = $_POST['num']; 
+  
+    for ($i = 1; $i <= 10; $i++) { 
+        echo $num . " x " . $i . " = " . ($num * $i) . "<br>"; 
+    } 
+} 
+?> 
+  
+</body> 
+</html> 
+ 
+ 
+ 
+2  Prime  
+ 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<form method="post"> 
+    <input type="number" name="n" required> 
+    <button type="submit">Check</button> 
+</form> 
+<?php 
+if (isset($_POST['n'])) { 
+    $n = $_POST['n']; 
+    $f = 0; 
+    for ($i = 2; $i < $n; $i++) { 
+        if ($n % $i == 0) { 
+            $f = 1; 
+            break; 
+        } 
+    } 
+    if ($n > 1 && $f == 0) 
+        echo "Prime"; 
+    else 
+        echo "Not Prime"; 
+} 
+?> 
+</body> 
+</html> 
+ 
+
+
+
+
+
+
+3  Fibnocci 
+ 
+<!DOCTYPE html> 
+<html> 
+<body> 
+  
+<form method="post"> 
+    <input type="number" name="n" required> 
+    <button type="submit">Show</button> 
+</form> 
+  
+<?php 
+if (isset($_POST['n'])) { 
+    $n = $_POST['n']; 
+  
+    $a = 0; 
+    $b = 1; 
+  
+    for ($i = 1; $i <= $n; $i++) { 
+        echo $a . " "; 
+        $c = $a + $b; 
+        $a = $b; 
+        $b = $c; 
+    } 
+} 
+?> 
+</body> 
+</html> 
+
+
+
+
+
+
+
+4 Palindrome 
+ 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<form method="post"> 
+    <input type="number" name="n" required> 
+    <button type="submit">Check</button> 
+</form> 
+<?php 
+if (isset($_POST['n'])) { 
+    $n = $_POST['n']; 
+    $rev = 0; 
+    $temp = $n; 
+    while ($temp > 0) { 
+        $rev = ($rev * 10) + ($temp % 10); 
+        $temp = (int)($temp / 10); 
+    } 
+  
+    if ($n == $rev) 
+        echo "Palindrome"; 
+    else 
+        echo "Not Palindrome"; 
+} 
+?> 
+  
+</body> 
+</html> 
+
+
+
+
+
+
+
+5 Armstrong
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+    <input type="number" name="n" required>
+    <button type="submit">Check</button>
+</form>
+<?php
+if (isset($_POST['n'])) {
+    $n = $_POST['n'];
+    $sum = 0;
+    $temp = $n;
+    while ($temp > 0) {
+        $d = $temp % 10;
+        $sum = $sum + ($d * $d * $d);
+        $temp = (int)($temp / 10);
+    }
+    if ($n == $sum)
+        echo "Armstrong Number";
+    else
+        echo "Not Armstrong Number";
+}
+?>
+</body>
+</html>
+
+
+
+
+
+6 Simple Calculator
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="number" name="a" required>
+<input type="number" name="b" required>
+<select name="op">
+<option value="+">+</option>
+<option value="-">-</option>
+<option value="*">*</option>
+<option value="/">/</option>
+</select>
+<button>Calculate</button>
+</form>
+<?php
+if(isset($_POST['a'])){
+$a=$_POST['a'];
+$b=$_POST['b'];
+$op=$_POST['op'];
+if($op=="+") echo $a+$b;
+if($op=="-") echo $a-$b;
+if($op=="*") echo $a*$b;
+if($op=="/") echo $a/$b;
+}
+?>
+</body>
+</html>
+
+
+
+
+
+7 Fahrenheit to Celsius
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="number" name="f" required>
+<button>Convert</button>
+</form>
+<?php
+if(isset($_POST['f'])){
+$f=$_POST['f'];
+$c=($f-32)*5/9;
+echo $c;
+}
+?>
+</body>
+</html>
+
+
+
+
+
+8 Count vow, digit, spaces
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="s" required>
+<button>Count</button>
+</form>
+<?php
+if(isset($_POST['s'])){
+$s=$_POST['s'];
+$v=$d=$sp=0;
+for($i=0;$i<strlen($s);$i++){
+$c=$s[$i];
+if($c=='a'||$c=='e'||$c=='i'||$c=='o'||$c=='u'||
+$c=='A'||$c=='E'||$c=='I'||$c=='O'||$c=='U')
+$v++;
+else if($c>='0' && $c<='9')
+$d++;
+else if($c==' ')
+$sp++;
+}
+echo "Vowels:$v Digits:$d Spaces:$sp";
+}
+?>
+</body>
+</html>
+
+
+
+
+
+9 Form handling
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="name" placeholder="Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<button>Submit</button>
+</form>
+<?php
+if(isset($_POST['name'])){
+$name=$_POST['name'];
+$email=$_POST['email'];
+echo "Name:$name Email:$email";
+}
+?>
+</body>
+</html>
+
+
+
+
+
+10 Form validation
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="name" placeholder="Name">
+<input type="text" name="email" placeholder="Email">
+<input type="number" name="age" placeholder="Age">
+<button>Submit</button>
+</form>
+<?php
+if(isset($_POST['name'])){
+$name=$_POST['name'];
+$email=$_POST['email'];
+$age=$_POST['age'];
+if($name=="" || $email=="" || $age=="")
+echo "All fields required";
+else if(!preg_match("/^[a-zA-Z ]+$/",$name))
+echo "Invalid Name";
+else if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+echo "Invalid Email";
+else if($age<18)
+echo "Age must be 18 or above";
+else
+echo "Valid Data";
+}
+?>
+</body>
+</html>
+
+
+
+
+
+11 Date
+
+
+Program 11.1
+
+
+Format today’s date in three different ways
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+echo "Today is " . date("Y/m/d") . "<br>";
+echo "Today is " . date("Y.m.d") . "<br>";
+echo "Today is " . date("Y-m-d") . "<br>";
+echo "Today is " . date("l");
+?>
+</body>
+</html>
+
+
+
+
+
+Program 11.2
+
+Output the current time in the specified format
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+echo "The time is " . date("h:i:sa");
+?>
+</body>
+</html>
+
+
+
+
+
+Program 11.3
+
+Create a date using mktime()
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+$d = mktime(11, 14, 54, 8, 12, 2014);
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?>
+</body>
+</html>
+
+
+
+
+
+Program 11.4
+
+Create a date from a string using strtotime()
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+$d = strtotime("10:30pm April 15 2014");
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?>
+</body>
+</html>
+
+
+
+Program 11.5
+
+Converting a string to a date
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+$d = strtotime("tomorrow");
+echo date("Y-m-d h:i:sa", $d) . "<br>";
+$d = strtotime("next Saturday");
+echo date("Y-m-d h:i:sa", $d) . "<br>";
+$d = strtotime("+3 Months");
+echo date("Y-m-d h:i:sa", $d) . "<br>";
+?>
+</body>
+</html>
+
+
+
+
+
+Program 11.6
+
+Output the dates for the next six Saturdays
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+$startdate = strtotime("Saturday");
+$enddate = strtotime("+6 weeks", $startdate);
+while ($startdate < $enddate) {
+echo date("M d", $startdate) . "<br>";
+$startdate = strtotime("+1 week", $startdate);
+}
+?>
+</body>
+</html>
+
+
+
+
+12 Simple calculator using switch case
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="number" name="a" placeholder="First number" required>
+<input type="number" name="b" placeholder="Second number" required>
+<select name="op">
+<option value="add">+</option>
+<option value="sub">-</option>
+<option value="mul">*</option>
+<option value="div">/</option>
+</select>
+<button>Calculate</button>
+</form>
+<?php
+if(isset($_POST['a'])){
+$a=$_POST['a'];
+$b=$_POST['b'];
+$op=$_POST['op'];
+switch($op){
+case "add": echo $a+$b; break;
+case "sub": echo $a-$b; break;
+case "mul": echo $a*$b; break;
+case "div": echo $a/$b; break;
+}
+}
+?>
+</body>
+</html>
+
+
+
+
+13 Reverse a number
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="number" name="n" required>
+<button>Reverse</button>
+</form>
+<?php
+if(isset($_POST['n'])){
+$n=$_POST['n'];
+$r=0;
+while($n>0){
+$r=$r*10+$n%10;
+$n=(int)($n/10);
+}
+echo $r;
+}
+?>
+</body>
+</html>
+
+
+
+
+
+Reverse a string
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="s" required>
+<button>Reverse</button>
+</form>
+<?php
+if(isset($_POST['s'])){
+$s=$_POST['s'];
+$r="";
+for($i=strlen($s)-1;$i>=0;$i--){
+$r.=$s[$i];
+}
+echo $r;
+}
+?>
+</body>
+</html>
+
+
+
+
+
+14 Sum of digits
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="number" name="n" required>
+<button>Find Sum</button>
+</form>
+<?php
+if(isset($_POST['n'])){
+$n=$_POST['n'];
+$s=0;
+while($n>0){
+$s+=$n%10;
+$n=(int)($n/10);
+}
+echo $s;
+}
+?>
+</body>
+</html>
+
+
+
+
+15 Leap Year
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="number" name="y" placeholder="Enter year" required>
+<button>Check</button>
+</form>
+<?php
+if(isset($_POST['y'])){
+$y=$_POST['y'];
+if(($y%4==0 && $y%100!=0) || ($y%400==0))
+echo "Leap Year";
+else
+echo "Not a Leap Year";
+}
+?>
+</body>
+</html

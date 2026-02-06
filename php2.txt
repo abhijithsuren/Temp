@@ -1,0 +1,147 @@
+17 File operation
+
+a)create file
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="fname" placeholder="hello.txt" required>
+<button>Create</button>
+</form>
+<?php
+if(isset($_POST['fname'])){
+$fname = $_POST['fname'];
+$fp = fopen($fname, "w");
+if($fp){
+fclose($fp);
+echo "File Created Successfully";
+} else {
+echo "Failed";
+}
+}
+?>
+</body>
+</html>
+
+
+b)write
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="fname" placeholder="hello.txt" required><br><br>
+<textarea name="data" placeholder="Enter text here" required></textarea><br><br>
+<button>Write</button>
+</form>
+<?php
+if(isset($_POST['fname'])){
+$fname = $_POST['fname'];
+$data = $_POST['data'];
+$fp = fopen($fname,"w");
+fwrite($fp,$data);
+fclose($fp);
+echo "Written to file successfully";
+}
+?>
+</body>
+</html>
+
+
+c)read
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="fname" placeholder="hello.txt" required>
+<button>Read</button>
+</form>
+<?php
+if(isset($_POST['fname'])){
+$fname = $_POST['fname'];
+$fp = fopen($fname,"r");
+$content = fread($fp, filesize($fname));
+fclose($fp);
+echo "<pre>$content</pre>";
+}
+?>
+</body>
+</html>
+
+
+
+
+d)delete
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+<input type="text" name="fname" placeholder="hello.txt" required>
+<button>Delete</button>
+</form>
+<?php
+if(isset($_POST['fname'])){
+$fname = $_POST['fname'];
+if(file_exists($fname)){
+unlink($fname);
+echo "File Deleted Successfully";
+}else{
+echo "File Not Found";
+}
+}
+?>
+</body>
+</html>
+
+
+
+
+18 Matrix addidtion
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post">
+Rows: <input type="number" name="r" required>
+Cols: <input type="number" name="c" required>
+<button name="set">Set Matrix</button>
+</form>
+<?php
+if(isset($_POST['set'])){
+$r=$_POST['r'];
+$c=$_POST['c'];
+echo "<form method='post'>";
+echo "<input type='hidden' name='r' value='$r'>";
+echo "<input type='hidden' name='c' value='$c'>";
+echo "<h3>Matrix A</h3>";
+for($i=0;$i<$r;$i++)
+for($j=0;$j<$c;$j++)
+echo "<input type='number' name='a[$i][$j]' required> ";
+echo "<h3>Matrix B</h3>";
+for($i=0;$i<$r;$i++)
+for($j=0;$j<$c;$j++)
+echo "<input type='number' name='b[$i][$j]' required> ";
+echo "<br><br><button name='add'>Add</button></form>";
+}
+if(isset($_POST['add'])){
+$r=$_POST['r'];
+$c=$_POST['c'];
+$a=$_POST['a'];
+$b=$_POST['b'];
+echo "<h3>Result Matrix</h3>";
+for($i=0;$i<$r;$i++){
+for($j=0;$j<$c;$j++)
+echo ($a[$i][$j]+$b[$i][$j])." ";
+echo "<br>";
+}
+}
+?>
+</body>
+</html
