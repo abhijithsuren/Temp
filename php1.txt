@@ -168,30 +168,30 @@ if (isset($_POST['n'])) {
 
 <!DOCTYPE html>
 <html>
-<body>
-<form method="post">
-<input type="number" name="a" required>
-<input type="number" name="b" required>
-<select name="op">
-<option value="+">+</option>
-<option value="-">-</option>
-<option value="*">*</option>
-<option value="/">/</option>
-</select>
-<button>Calculate</button>
-</form>
-<?php
-if(isset($_POST['a'])){
-$a=$_POST['a'];
-$b=$_POST['b'];
-$op=$_POST['op'];
-if($op=="+") echo $a+$b;
-if($op=="-") echo $a-$b;
-if($op=="*") echo $a*$b;
-if($op=="/") echo $a/$b;
-}
-?>
-</body>
+     <body>
+          <form method="post">
+               <input type="number" name="a" required>
+               <input type="number" name="b" required>
+               <select name="op">
+               <option value="+">+</option>
+               <option value="-">-</option>
+               <option value="*">*</option>
+               <option value="/">/</option>
+               </select>
+               <button>Calculate</button>
+          </form>
+          <?php
+               if(isset($_POST['a'])){
+                    $a=$_POST['a'];
+                    $b=$_POST['b'];
+                    $op=$_POST['op'];
+                    if($op=="+") echo $a+$b;
+                    if($op=="-") echo $a-$b;
+                    if($op=="*") echo $a*$b;
+                    if($op=="/") echo $a/$b;
+               }
+          ?>
+     </body>
 </html>
 
 
@@ -203,19 +203,19 @@ if($op=="/") echo $a/$b;
 
 <!DOCTYPE html>
 <html>
-<body>
-<form method="post">
-<input type="number" name="f" required>
-<button>Convert</button>
-</form>
-<?php
-if(isset($_POST['f'])){
-$f=$_POST['f'];
-$c=($f-32)*5/9;
-echo $c;
-}
-?>
-</body>
+    <body>
+        <form method="post">
+            <input type="number" name="f" required>
+            <button>Convert</button>
+        </form>
+        <?php
+            if(isset($_POST['f'])){
+                $f=$_POST['f'];
+                $c=($f-32)*5/9;
+                echo $c;
+            }
+        ?>
+    </body>
 </html>
 
 
@@ -227,29 +227,28 @@ echo $c;
 
 <!DOCTYPE html>
 <html>
-<body>
-<form method="post">
-<input type="text" name="s" required>
-<button>Count</button>
-</form>
-<?php
-if(isset($_POST['s'])){
-$s=$_POST['s'];
-$v=$d=$sp=0;
-for($i=0;$i<strlen($s);$i++){
-$c=$s[$i];
-if($c=='a'||$c=='e'||$c=='i'||$c=='o'||$c=='u'||
-$c=='A'||$c=='E'||$c=='I'||$c=='O'||$c=='U')
-$v++;
-else if($c>='0' && $c<='9')
-$d++;
-else if($c==' ')
-$sp++;
-}
-echo "Vowels:$v Digits:$d Spaces:$sp";
-}
-?>
-</body>
+    <body>
+        <form method="post">
+            <input type="text" name="s" required>
+            <button>Count</button>
+        </form>
+        <?php
+            if(isset($_POST['s'])){
+                $s=$_POST['s'];
+                $v=$d=$sp=0;
+                for($i=0;$i<strlen($s);$i++){
+                    $c=$s[$i];
+                    if($c=='a'||$c=='e'||$c=='i'||$c=='o'||$c=='u'||$c=='A'||$c=='E'||$c=='I'||$c=='O'||$c=='U')
+                        $v++;
+                    else if($c>='0' && $c<='9')
+                        $d++;
+                    else if($c==' ')
+                        $sp++;
+                }
+                echo "Vowels:$v Digits:$d Spaces:$sp";
+            }
+        ?>
+    </body>
 </html>
 
 
@@ -260,20 +259,20 @@ echo "Vowels:$v Digits:$d Spaces:$sp";
 
 <!DOCTYPE html>
 <html>
-<body>
-<form method="post">
-<input type="text" name="name" placeholder="Name" required>
-<input type="email" name="email" placeholder="Email" required>
-<button>Submit</button>
-</form>
-<?php
-if(isset($_POST['name'])){
-$name=$_POST['name'];
-$email=$_POST['email'];
-echo "Name:$name Email:$email";
-}
-?>
-</body>
+    <body>
+        <form method="post">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <button>Submit</button>
+        </form>
+        <?php
+            if(isset($_POST['name'])){
+                $name=$_POST['name'];
+                $email=$_POST['email'];
+                echo "Name:$name Email:$email";
+            }
+        ?>
+    </body>
 </html>
 
 
@@ -285,29 +284,29 @@ echo "Name:$name Email:$email";
 <!DOCTYPE html>
 <html>
 <body>
-<form method="post">
-<input type="text" name="name" placeholder="Name">
-<input type="text" name="email" placeholder="Email">
-<input type="number" name="age" placeholder="Age">
-<button>Submit</button>
-</form>
-<?php
-if(isset($_POST['name'])){
-$name=$_POST['name'];
-$email=$_POST['email'];
-$age=$_POST['age'];
-if($name=="" || $email=="" || $age=="")
-echo "All fields required";
-else if(!preg_match("/^[a-zA-Z ]+$/",$name))
-echo "Invalid Name";
-else if(!filter_var($email,FILTER_VALIDATE_EMAIL))
-echo "Invalid Email";
-else if($age<18)
-echo "Age must be 18 or above";
-else
-echo "Valid Data";
-}
-?>
+    <form method="post">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="number" name="age" placeholder="Age">
+        <button>Submit</button>
+    </form>
+    <?php
+        if(isset($_POST['name'])){
+            $name=$_POST['name'];
+            $email=$_POST['email'];
+            $age=$_POST['age'];
+            if($name=="" || $email=="" || $age=="")
+                echo "All fields required";
+            else if(!preg_match("/^[a-zA-Z ]+$/",$name))
+                echo "Invalid Name";
+            else if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+                echo "Invalid Email";
+            else if($age<18)
+                echo "Age must be 18 or above";
+            else
+                echo "Valid Data";
+        }
+    ?>
 </body>
 </html>
 
@@ -324,14 +323,14 @@ Program 11.1
 Format today’s date in three different ways
 <!DOCTYPE html>
 <html>
-<body>
-<?php
-echo "Today is " . date("Y/m/d") . "<br>";
-echo "Today is " . date("Y.m.d") . "<br>";
-echo "Today is " . date("Y-m-d") . "<br>";
-echo "Today is " . date("l");
-?>
-</body>
+    <body>
+    <?php
+        echo "Today is " . date("Y/m/d") . "<br>";
+        echo "Today is " . date("Y.m.d") . "<br>";
+        echo "Today is " . date("Y-m-d") . "<br>";
+        echo "Today is " . date("l");
+    ?>
+    </body>
 </html>
 
 
@@ -344,9 +343,9 @@ Output the current time in the specified format
 <!DOCTYPE html>
 <html>
 <body>
-<?php
-echo "The time is " . date("h:i:sa");
-?>
+    <?php
+        echo "The time is " . date("h:i:sa");
+    ?>
 </body>
 </html>
 
@@ -360,10 +359,10 @@ Create a date using mktime()
 <!DOCTYPE html>
 <html>
 <body>
-<?php
-$d = mktime(11, 14, 54, 8, 12, 2014);
-echo "Created date is " . date("Y-m-d h:i:sa", $d);
-?>
+    <?php
+        $d = mktime(11, 14, 54, 8, 12, 2014);
+        echo "Created date is " . date("Y-m-d h:i:sa", $d);
+    ?>
 </body>
 </html>
 
@@ -377,10 +376,10 @@ Create a date from a string using strtotime()
 <!DOCTYPE html>
 <html>
 <body>
-<?php
-$d = strtotime("10:30pm April 15 2014");
-echo "Created date is " . date("Y-m-d h:i:sa", $d);
-?>
+    <?php
+        $d = strtotime("10:30pm April 15 2014");
+        echo "Created date is " . date("Y-m-d h:i:sa", $d);
+    ?>
 </body>
 </html>
 
@@ -392,14 +391,14 @@ Converting a string to a date
 <!DOCTYPE html>
 <html>
 <body>
-<?php
-$d = strtotime("tomorrow");
-echo date("Y-m-d h:i:sa", $d) . "<br>";
-$d = strtotime("next Saturday");
-echo date("Y-m-d h:i:sa", $d) . "<br>";
-$d = strtotime("+3 Months");
-echo date("Y-m-d h:i:sa", $d) . "<br>";
-?>
+    <?php
+        $d = strtotime("tomorrow");
+        echo date("Y-m-d h:i:sa", $d) . "<br>";
+        $d = strtotime("next Saturday");
+        echo date("Y-m-d h:i:sa", $d) . "<br>";
+        $d = strtotime("+3 Months");
+        echo date("Y-m-d h:i:sa", $d) . "<br>";
+    ?>
 </body>
 </html>
 
@@ -565,4 +564,5 @@ echo "Not a Leap Year";
 }
 ?>
 </body>
+
 </html
