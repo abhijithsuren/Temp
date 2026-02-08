@@ -1,0 +1,74 @@
+<?php
+$servername="localhost";
+$username="root";
+$password="";
+$dbname="hospital";
+
+$conn = new mysqli($servername, $username, $password);
+
+if($conn->connect_error){
+    die("connection error: ".$conn->connect_error);
+}
+echo "Connected successfully<br>";
+
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+
+if($conn->query($sql)===TRUE){
+    echo "Database created<br>";
+} else {
+    echo "Error : ".$conn->error;
+}
+
+$conn->select_db($dbname);
+
+$sql = "CREATE TABLE IF NOT EXISTS Patient(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(30) NOT NULL,
+        age INT,
+        disease VARCHAR(30)
+        )";
+
+if($conn->query($sql)===TRUE){
+    echo "Table created<br>";
+} else {
+    echo "Error : ".$conn->error;
+}
+
+$sql = "INSERT INTO Patient(name,age,disease) VALUES
+        ('Ravi',50,'Fever'),
+        ('Paul',45,'Common Cold')";
+
+if($conn->query($sql)===TRUE){
+    echo "Data inserted<br>";
+} else {
+    echo "Error : ".$conn->error;
+}
+
+$sql = "SELECT * FROM Patient";
+$result = $conn->query($sql);
+
+echo "<table border='1'>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Disease</th>
+</tr>";
+
+if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+            <td>{$row['id']}</td>
+            <td>{$row['name']}</td>
+            <td>{$row['age']}</td>
+            <td>{$row['disease']}</td>
+        </tr>";
+    }
+} else {
+    echo "<tr><td colspan='4'>No records</td></tr>";
+}
+
+echo "</table>";
+
+$conn->close();
+?>
