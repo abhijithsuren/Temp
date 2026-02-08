@@ -1,0 +1,83 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Hospital";
+
+$conn = new mysqli($servername, $username, $password);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully<br><br>";
+
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully<br><br>";
+} else {
+    echo "Error creating database: " . $conn->error . "<br>";
+}
+
+$conn->select_db($dbname);
+
+$sql = "CREATE TABLE IF NOT EXISTS Patient (
+    pid INT AUTO_INCREMENT PRIMARY KEY,
+    pname VARCHAR(50) NOT NULL,
+    age INT,
+    gender VARCHAR(10),
+    disease VARCHAR(50),
+    contact VARCHAR(15)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table Patient created successfully<br><br>";
+} else {
+    echo "Error creating table: " . $conn->error . "<br>";
+}
+
+$sql = "INSERT INTO Patient (pname, age, gender, disease, contact) VALUES
+    ('Ravi Kumar', 25, 'Male', 'Fever', '9876543210'),
+    ('Anita Sharma', 30, 'Female', 'Diabetes', '9123456780'),
+    ('Rahul Verma', 40, 'Male', 'BP', '9988776655'),
+    ('Priya Singh', 28, 'Female', 'Cold', '9090909090')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "4 records inserted successfully<br><br>";
+} else {
+    echo "Error inserting records: " . $conn->error . "<br>";
+}
+
+$sql = "SELECT * FROM Patient";
+$result = $conn->query($sql);
+
+echo "<h2>Patient Details</h2>";
+
+echo "<table border='1' cellpadding='10'>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Disease</th>
+    <th>Contact</th>
+</tr>";
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+            <td>{$row['pid']}</td>
+            <td>{$row['pname']}</td>
+            <td>{$row['age']}</td>
+            <td>{$row['gender']}</td>
+            <td>{$row['disease']}</td>
+            <td>{$row['contact']}</td>
+        </tr>";
+    }
+} else {
+    echo "<tr><td colspan='6'>No records found</td></tr>";
+}
+
+echo "</table>";
+
+$conn->close();
+?>
